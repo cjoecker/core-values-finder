@@ -44,7 +44,7 @@ export const Prioritize = ({
         Select the values with which you identify with
       </h1>
       <div className="mx-auto my-12 max-w-7xl flex flex-row flex-wrap justify-center">
-        <div className="grid grid-cols-3 gap-x-32 gap-y-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:grid-cols-3 lg:gap-x-32 gap-y-3">
           {prioritizeOptions?.map((coreValue) => (
             <PrioritizeValueButton
               option={coreValue}
