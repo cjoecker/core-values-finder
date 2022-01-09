@@ -1,6 +1,7 @@
 {
   "name": "core-values-finder",
   "version": "0.1.0",
+  "homepage": "https://cjoecker.github.io/core-values-finder/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
