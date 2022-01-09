@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { PrioritizeValueButton } from "./PrioritizeValuesButton";
 import {prioritizeOption} from "../Steps";
-import {StepButton} from "../../StepButton";
+import {StepButton} from "../shared/StepButton";
 
 export type PreselectValuesProps = {
   prioritizeOptions: prioritizeOption[] | undefined;
@@ -15,8 +15,8 @@ export const Prioritize = ({
   changeStep,
 }: PreselectValuesProps) => {
   return (
-    <div>
-      <h1 className="text-neon-white text-center m-auto text-3xl mt-32">
+    <div className={'my-12'}>
+      <h1 className="text-neon-white text-center m-auto text-3xl">
         Select the values with which you identify with
       </h1>
       <div className="mx-auto my-12 max-w-7xl flex flex-row flex-wrap justify-center">

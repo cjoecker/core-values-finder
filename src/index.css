@@ -107,16 +107,18 @@
 }
 
 :root {
-  --blue: theme('colors.cyan.400');
-  --orange: theme('colors.orange.400');
+  --blue: theme("colors.cyan.400");
+  --orange: theme("colors.orange.400");
 }
 
 body {
-  overflow:auto;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
   font-family: Montserrat, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(#060f4d, #421952);
+  background: #060f4d linear-gradient(#060f4d, #421952);
   color: white;
 }
 
@@ -150,12 +152,12 @@ body {
   box-shadow: 0 0 5px var(--orange), inset 0 0 5px var(--orange);
 }
 
-.preselect-shadow-l{
-  box-shadow:-1px 0 5px var(--blue), inset 1px 0 5px var(--blue) !important;
+.preselect-shadow-l {
+  box-shadow: -1px 0 5px var(--blue), inset 1px 0 5px var(--blue) !important;
 }
 
-.preselect-shadow-r{
-  box-shadow:1px 0 5px var(--blue), inset -1px 0 5px var(--blue) !important;
+.preselect-shadow-r {
+  box-shadow: 1px 0 5px var(--blue), inset -1px 0 5px var(--blue) !important;
 }
 
 .border-1 {
@@ -163,9 +165,41 @@ body {
 }
 
 .border-1-l {
-  border-width: 1px 0 1px 1px ;
+  border-width: 1px 0 1px 1px;
 }
 
 .border-1-r {
   border-width: 1px 1px 1px 0;
+}
+
+.heartbeat {
+  animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat
+{
+  0%
+  {
+    transform: scale( .9 );
+  }
+  10%
+  {
+    transform: scale( 1 );
+  }
+  20%
+  {
+    transform: scale( .9 );
+  }
+  30%
+  {
+    transform: scale( 1 );
+  }
+  40%
+  {
+    transform: scale( .9 );
+  }
+  100%
+  {
+    transform: scale( .9 );
+  }
 }

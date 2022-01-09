@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import {prioritizeOption} from "../Steps";
-import {StepButton} from "../../StepButton";
+import {StepButton} from "../shared/StepButton";
 
 export type PreselectValuesProps = {
   prioritizeOptions: prioritizeOption[];
@@ -14,7 +14,7 @@ export const Results = ({ prioritizeOptions, changeStep }: PreselectValuesProps)
   }, [prioritizeOptions]);
 
   return (
-    <div>
+    <div className={'my-12'}>
       <h1 className="text-neon-white text-center m-auto text-3xl mt-32">
         These are your core values
       </h1>

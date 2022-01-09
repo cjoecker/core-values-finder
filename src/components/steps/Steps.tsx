@@ -48,7 +48,7 @@ export const Steps = ({}: StepsProps) => {
         );
     };
     return (
-        <div>
+        <div className={'flex justify-center'}>
             {step === 1 && (
                 <Preselect
                     coreValues={coreValues}
