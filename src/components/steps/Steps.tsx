@@ -1,208 +1,135 @@
-import * as React from 'react';
-import {useEffect, useState} from "react";
-import {Results} from "./results/Results";
-import {Prioritize} from "./prioritize/Prioritize";
-import {Preselect} from "./preselect/Preselect";
+import * as React from "react";
+import { useEffect, useState } from "react";
+import { Results } from "./results/Results";
+import { Prioritize } from "./prioritize/Prioritize";
+import { Preselect } from "./preselect/Preselect";
+import { AnimatePresence } from "framer-motion";
+import { StepAnimation } from "./shared/StepAnimation";
+import {coreValuesList} from "../../constants/coreValues";
 
-export type StepsProps = {
-
-};
+export type StepsProps = {};
 export const Steps = ({}: StepsProps) => {
-    const [coreValues, setCoreValues] = useState<coreValue[]>([]);
-    const [prioritizeOptions, setPrioritizeOptions] = useState<
-        prioritizeOption[]
-        >([]);
-    const [step, setStep] = useState(1);
-    useEffect(() => {
-        setCoreValues(
-            coreValuesList.map((coreValue) => ({
-                name: coreValue,
-                isPreselected: false,
-                isSelected: false,
-            }))
-        );
-    }, []);
+  const [coreValues, setCoreValues] = useState<coreValue[]>([]);
+  const [prioritizeOptions, setPrioritizeOptions] = useState<
+    prioritizeOption[]
+  >([]);
+  const [activeStep, setActiveStep] = useState(1);
 
-    useEffect(() => {
-        setPrioritizeOptions(getPrioritizeOptions(coreValues.slice(0, 10)));
-    }, [coreValues]);
-
-    const onPreselectCoreValue = (name: string) => {
-        setCoreValues((coreValues) =>
-            coreValues?.map((coreValue) =>
-                coreValue.name === name
-                    ? { ...coreValue, isPreselected: !coreValue.isPreselected }
-                    : coreValue
-            )
-        );
-    };
-
-    const onPrioritizeCoreValue = (selectedOption: prioritizeOption) => {
-        setPrioritizeOptions((options) =>
-            options?.map((option) =>
-                option.first === selectedOption.first &&
-                option.second === selectedOption.second
-                    ? { ...selectedOption }
-                    : option
-            )
-        );
-    };
-    return (
-        <div className={'flex justify-center'}>
-            {step === 1 && (
-                <Preselect
-                    coreValues={coreValues}
-                    onPreselectCoreValue={onPreselectCoreValue}
-                    changeStep={(newStep) => {
-                        setStep(newStep);
-                    }}
-                />
-            )}
-            {step === 2 && (
-                <Prioritize
-                    prioritizeOptions={prioritizeOptions}
-                    onSelectOption={onPrioritizeCoreValue}
-                    changeStep={(newStep) => {
-                        setStep(newStep);
-                    }}
-                />
-            )}
-            {step === 3 && (
-                <Results
-                    prioritizeOptions={prioritizeOptions}
-                    changeStep={(newStep) => {
-                        setStep(newStep);
-                    }}
-                />
-            )}
-        </div>
+  useEffect(() => {
+    setCoreValues(
+        shuffle(coreValuesList).map((coreValue) => ({
+        name: coreValue,
+        isPreselected: false,
+        isSelected: false,
+      }))
     );
-};
+  }, []);
 
+  useEffect(() => {
+    setPrioritizeOptions(getPrioritizeOptions(coreValues));
+  }, [coreValues]);
+
+  const onChangeStep = (targetStep: number) => {
+    setActiveStep(targetStep);
+  };
+
+  const onPreselectCoreValue = (name: string) => {
+    setCoreValues((coreValues) =>
+      coreValues?.map((coreValue) =>
+        coreValue.name === name
+          ? { ...coreValue, isPreselected: !coreValue.isPreselected }
+          : coreValue
+      )
+    );
+  };
+
+  const onPrioritizeCoreValue = (selectedOption: prioritizeOption) => {
+    setPrioritizeOptions((options) =>
+      options?.map((option) =>
+        option.first === selectedOption.first &&
+        option.second === selectedOption.second
+          ? { ...selectedOption }
+          : option
+      )
+    );
+  };
+  return (
+    <div className={"flex justify-center m-auto"}>
+      <AnimatePresence exitBeforeEnter>
+        {activeStep === 1 && (
+          <StepAnimation animationKey={"step-1"}>
+            <Preselect
+              key={"step1"}
+              coreValues={coreValues}
+              onPreselectCoreValue={onPreselectCoreValue}
+              changeStep={(newStep) => {
+                onChangeStep(newStep);
+              }}
+            />
+          </StepAnimation>
+        )}
+        {activeStep === 2 && (
+          <StepAnimation animationKey={"step-2"}>
+            <Prioritize
+              key={"step2"}
+              prioritizeOptions={prioritizeOptions}
+              onSelectOption={onPrioritizeCoreValue}
+              changeStep={(newStep) => {
+                onChangeStep(newStep);
+              }}
+            />
+          </StepAnimation>
+        )}
+        {activeStep === 3 && (
+          <StepAnimation animationKey={"step-3"}>
+            <Results
+              key={"step3"}
+              prioritizeOptions={prioritizeOptions}
+              changeStep={(newStep) => {
+                onChangeStep(newStep);
+              }}
+            />
+          </StepAnimation>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 export type coreValue = {
-    name: string;
-    isPreselected: boolean;
-    isSelected: boolean;
+  name: string;
+  isPreselected: boolean;
 };
 export interface prioritizeOption {
-    first: string;
-    second: string;
-    selected: string | undefined;
+  first: string;
+  second: string;
+  selected: string | undefined;
 }
 
 function getPrioritizeOptions(
-    preselectedCoreValues: coreValue[]
+  coreValues: coreValue[]
 ): prioritizeOption[] {
-    let coreValuesOptions: prioritizeOption[] = [];
-    for (let i = 0; i < preselectedCoreValues.length; i += 1) {
-        for (let j = i + 1; j < preselectedCoreValues.length; j += 1) {
-            coreValuesOptions.push({
-                first: preselectedCoreValues[i].name,
-                second: preselectedCoreValues[j].name,
-                selected: "",
-            });
-        }
+  const preselectedValues = coreValues.filter(coreValue => coreValue.isPreselected)
+  let coreValuesOptions: prioritizeOption[] = [];
+  for (let i = 0; i < preselectedValues.length; i += 1) {
+    for (let j = i + 1; j < preselectedValues.length; j += 1) {
+      coreValuesOptions.push({
+        first: preselectedValues[i].name,
+        second: preselectedValues[j].name,
+        selected: "",
+      });
     }
-    return coreValuesOptions;
+  }
+  return coreValuesOptions;
 }
 
-const coreValuesList = [
-    "Family",
-    "Freedom",
-    "Security",
-    "Loyalty",
-    "Intelligence",
-    "Connection",
-    "Creativity",
-    "Humanity",
-    "Success",
-    "Respect",
-    "Invention",
-    "Diversity",
-    "Generosity",
-    "Integrity",
-    "Finesse",
-    "Love",
-    "Openness",
-    "Religion",
-    "Order",
-    "Advancement",
-    "Joy/Play",
-    "Forgiveness",
-    "Work Smarter and Harder",
-    "Excitement",
-    "Goodness",
-    "Involvement",
-    "Faith",
-    "Wisdom",
-    "Beauty",
-    "Caring",
-    "Personal Development",
-    "Honesty",
-    "Adventure",
-    "Kindness",
-    "Teamwork",
-    "Career",
-    "Communication",
-    "Learning",
-    "Excellence",
-    "Innovation",
-    "Quality",
-    "Commonality",
-    "Contributing",
-    "Spiritualism",
-    "Strength",
-    "Entertain",
-    "Wealth",
-    "Speed",
-    "Power",
-    "Affection",
-    "Cooperation",
-    "Love of Career",
-    "Friendship/Relationship",
-    "Encouragement",
-    "Pride in Your Work",
-    "Clarity",
-    "Fun-Loving",
-    "Charisma",
-    "Humor",
-    "Leadership",
-    "Renewal",
-    "Home",
-    "Be True",
-    "Contentment",
-    "Friendship",
-    "Courage",
-    "Balance",
-    "Compassion",
-    "Fitness",
-    "Professionalism",
-    "Relationship",
-    "Knowledge",
-    "Change",
-    "Prosperity",
-    "Wellness",
-    "Finances",
-    "Gratitude",
-    "Grace",
-    "Endurance",
-    "Facilitation",
-    "Effectiveness",
-    "Fun",
-    "Fame",
-    "Justice",
-    "Appreciation",
-    "Willingness",
-    "Trusting Your Gut",
-    "Giving People a Chance",
-    "Patience",
-    "Self-Respect",
-    "Abundance",
-    "Reciprocity",
-    "Enjoyment",
-    "Entrepreneurial",
-    "Happiness",
-    "Harmony",
-    "Peace",
-];
+function shuffle(array: string[]) {
+  let currentIndex = array.length,  randomIndex;
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}

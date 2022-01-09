@@ -1,8 +1,10 @@
 import * as React from "react";
 
 import { PrioritizeValueButton } from "./PrioritizeValuesButton";
-import {prioritizeOption} from "../Steps";
-import {StepButton} from "../shared/StepButton";
+import { prioritizeOption } from "../Steps";
+import { StepButton } from "../shared/StepButton";
+import { useEffect, useState } from "react";
+import { ErrorMessage } from "../shared/ErrorMessage";
 
 export type PreselectValuesProps = {
   prioritizeOptions: prioritizeOption[] | undefined;
@@ -14,8 +16,30 @@ export const Prioritize = ({
   onSelectOption,
   changeStep,
 }: PreselectValuesProps) => {
+  const [isErrorVisible, setIsErrorVisible] = useState(false);
+  const [selectedNumber, setSelectedNumber] = useState(0);
+  useEffect(() => {
+    if (prioritizeOptions) {
+      const newSelectedNumber = prioritizeOptions.filter(
+        (coreValue) => coreValue.selected
+      ).length;
+        console.log(newSelectedNumber)
+      setSelectedNumber(newSelectedNumber);
+      if (isErrorVisible) {
+        setIsErrorVisible(newSelectedNumber < 3);
+      }
+    }
+  }, [prioritizeOptions]);
+  const errorMessage = "Please select at least three options";
+  const onChangeNextStep = () => {
+    if (selectedNumber < 3) {
+      setIsErrorVisible(true);
+    } else {
+      changeStep(3);
+    }
+  };
   return (
-    <div className={'my-12'}>
+    <div className={"my-12"}>
       <h1 className="text-neon-white text-center m-auto text-3xl">
         Select the values with which you identify with
       </h1>
@@ -30,10 +54,11 @@ export const Prioritize = ({
           ))}
         </div>
       </div>
-      <div className="my-12 flex justify-center items-center w-screen">
+      {isErrorVisible && <ErrorMessage errorMessage={errorMessage} />}
+      <div className="mt-4 flex justify-center items-center w-screen">
         <div className={" inline-grid grid-cols-2"}>
           <StepButton label={"previous step"} onClick={() => changeStep(1)} />
-          <StepButton label={"next step"} onClick={() => changeStep(3)} />
+          <StepButton label={"next step"} onClick={onChangeNextStep} />
         </div>
       </div>
     </div>

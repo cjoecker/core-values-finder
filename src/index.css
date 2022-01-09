@@ -171,35 +171,3 @@ body {
 .border-1-r {
   border-width: 1px 1px 1px 0;
 }
-
-.heartbeat {
-  animation: heartbeat 2s infinite;
-}
-
-@keyframes heartbeat
-{
-  0%
-  {
-    transform: scale( .9 );
-  }
-  10%
-  {
-    transform: scale( 1 );
-  }
-  20%
-  {
-    transform: scale( .9 );
-  }
-  30%
-  {
-    transform: scale( 1 );
-  }
-  40%
-  {
-    transform: scale( .9 );
-  }
-  100%
-  {
-    transform: scale( .9 );
-  }
-}
