@@ -59,7 +59,7 @@ export function getResults(prioritizeOptions: prioritizeOption[]) {
 }
 
 function getSelectedDuplicatesNumber(options: string[]) {
-  const optionsDuplicates: any = {};
+  const optionsDuplicates: Record<string, number> = {};
   options.forEach((option) => {
     if (option) {
       optionsDuplicates[option] = (optionsDuplicates[option] || 0) + 1;

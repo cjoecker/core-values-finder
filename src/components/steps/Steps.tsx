@@ -7,8 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import { StepAnimation } from "./shared/StepAnimation";
 import {coreValuesList} from "../../constants/coreValues";
 
-export type StepsProps = {};
-export const Steps = ({}: StepsProps) => {
+export const Steps = () => {
   const [coreValues, setCoreValues] = useState<coreValue[]>([]);
   const [prioritizeOptions, setPrioritizeOptions] = useState<
     prioritizeOption[]
@@ -110,7 +109,7 @@ function getPrioritizeOptions(
   coreValues: coreValue[]
 ): prioritizeOption[] {
   const preselectedValues = coreValues.filter(coreValue => coreValue.isPreselected)
-  let coreValuesOptions: prioritizeOption[] = [];
+  const coreValuesOptions: prioritizeOption[] = [];
   for (let i = 0; i < preselectedValues.length; i += 1) {
     for (let j = i + 1; j < preselectedValues.length; j += 1) {
       coreValuesOptions.push({
@@ -125,7 +124,7 @@ function getPrioritizeOptions(
 
 function shuffle(array: string[]) {
   let currentIndex = array.length,  randomIndex;
-  while (currentIndex != 0) {
+  while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
     [array[currentIndex], array[randomIndex]] = [

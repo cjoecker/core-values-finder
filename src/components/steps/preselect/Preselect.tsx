@@ -3,8 +3,10 @@ import * as React from "react";
 import { PreselectValueButton } from "./PreselectValueButton";
 import { coreValue } from "../Steps";
 import { StepButton } from "../shared/StepButton";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ErrorMessage } from "../shared/ErrorMessage";
+import {errorMessageNotEnoughSelected} from "../../../constants/errorMessages";
+import {useEffectUnsafe} from "../../../utils/unsafeHooks";
 
 export type PreselectValuesProps = {
   coreValues: coreValue[] | undefined;
@@ -18,7 +20,7 @@ export const Preselect = ({
 }: PreselectValuesProps) => {
   const [isErrorVisible, setIsErrorVisible] = useState(false);
   const [preselectedNumber, setPreselectedNumber] = useState(0);
-  useEffect(() => {
+  useEffectUnsafe(() => {
     if (coreValues) {
       const newPreselectedNumber = coreValues.filter(
         (coreValue) => coreValue.isPreselected
@@ -29,7 +31,6 @@ export const Preselect = ({
       }
     }
   }, [coreValues]);
-  const errorMessage = "Please select at least 3 core values";
   const onChangeStep = () => {
     if (preselectedNumber < 3) {
       setIsErrorVisible(true);
@@ -52,7 +53,7 @@ export const Preselect = ({
           />
         ))}
       </div>
-      {isErrorVisible && <ErrorMessage errorMessage={errorMessage} />}
+      {isErrorVisible && <ErrorMessage errorMessage={errorMessageNotEnoughSelected} />}
       <div className="mt-4 flex justify-center items-center w-screen">
         <StepButton label={"next step"} onClick={onChangeStep} />
       </div>
