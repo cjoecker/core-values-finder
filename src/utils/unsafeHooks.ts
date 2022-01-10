@@ -4,8 +4,10 @@
  *
  * Please use with care, as this can easily lead to bugs
  */
-import {useEffect, useMemo} from 'react';
 
-export const useMemoUnsafe = useMemo;
 
-export const useEffectUnsafe = useEffect;
+
+
+
+
+export {useEffect as useEffectUnsafe, useMemo as useMemoUnsafe} from 'react';

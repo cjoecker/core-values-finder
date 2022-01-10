@@ -110,11 +110,11 @@ function getPrioritizeOptions(
 ): prioritizeOption[] {
   const preselectedValues = coreValues.filter(coreValue => coreValue.isPreselected)
   const coreValuesOptions: prioritizeOption[] = [];
-  for (let i = 0; i < preselectedValues.length; i += 1) {
-    for (let j = i + 1; j < preselectedValues.length; j += 1) {
+  for (let index = 0; index < preselectedValues.length; index += 1) {
+    for (let index_ = index + 1; index_ < preselectedValues.length; index_ += 1) {
       coreValuesOptions.push({
-        first: preselectedValues[i].name,
-        second: preselectedValues[j].name,
+        first: preselectedValues[index].name,
+        second: preselectedValues[index_].name,
         selected: "",
       });
     }

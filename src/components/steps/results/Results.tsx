@@ -52,18 +52,18 @@ export function getResults(prioritizeOptions: prioritizeOption[]) {
   ).sort(function (a, b) {
     return b - a;
   });
-  const highestNumberOfSelections = sortedNumberOfSelections.slice(0, 3);
+  const highestNumberOfSelections = new Set(sortedNumberOfSelections.slice(0, 3));
   return sortedSelectedOptions.filter((option) =>
-    highestNumberOfSelections.includes(numberOfSelectedOptions[option])
+    highestNumberOfSelections.has(numberOfSelectedOptions[option])
   );
 }
 
 function getSelectedDuplicatesNumber(options: string[]) {
   const optionsDuplicates: Record<string, number> = {};
-  options.forEach((option) => {
+  for (const option of options) {
     if (option) {
       optionsDuplicates[option] = (optionsDuplicates[option] || 0) + 1;
     }
-  });
+  }
   return optionsDuplicates;
 }

@@ -17,6 +17,8 @@
     "plugin:unicorn/recommended"
   ],
   "rules": {
+    "unicorn/filename-case": "off",
+    "unicorn/prevent-abbreviations": "off",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "unused-imports/no-unused-imports-ts": "warn",
