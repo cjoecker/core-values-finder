@@ -5,8 +5,8 @@ import { prioritizeOption } from "../Steps";
 import { StepButton } from "../shared/StepButton";
 import { useState } from "react";
 import { ErrorMessage } from "../shared/ErrorMessage";
-import {errorMessageNotEnoughSelected} from "../../../constants/errorMessages";
-import {useEffectUnsafe} from "../../../utils/unsafeHooks";
+import { errorMessageNotEnoughSelected } from "../../../constants/errorMessages";
+import { useEffectUnsafe } from "../../../utils/unsafeHooks";
 
 export type PreselectValuesProps = {
   prioritizeOptions: prioritizeOption[] | undefined;
@@ -40,8 +40,9 @@ export const Prioritize = ({
   };
   return (
     <div className={"my-12"}>
-      <h1 className="text-neon-white text-center m-auto text-3xl">
-        Select the core value of the two, with which you identify yourself the most
+      <h1 className="text-lg-neon-white text-center m-auto text-3xl">
+        Select the core value of the two, with which you identify yourself the
+        most
       </h1>
       <div className="mx-auto my-12 max-w-7xl flex flex-row flex-wrap justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:grid-cols-3 lg:gap-x-32 gap-y-3">
@@ -54,7 +55,9 @@ export const Prioritize = ({
           ))}
         </div>
       </div>
-      {isErrorVisible && <ErrorMessage errorMessage={errorMessageNotEnoughSelected} />}
+      {isErrorVisible && (
+        <ErrorMessage errorMessage={errorMessageNotEnoughSelected} />
+      )}
       <div className="mt-4 flex justify-center items-center w-screen">
         <div className={" inline-grid grid-cols-2"}>
           <StepButton label={"previous step"} onClick={() => changeStep(1)} />

@@ -91,102 +91,99 @@ describe("Results", () => {
     ).toEqual(["money", "family", "fun", "food"]);
 
     expect(
-        getResults([
-          {
-            first: "money",
-            second: "family",
-            selected: "money",
-          },
-          {
-            first: "money",
-            second: "love",
-            selected: "money",
-          },
-          {
-            first: "money",
-            second: "health",
-            selected: "money",
-          },
+      getResults([
+        {
+          first: "money",
+          second: "family",
+          selected: "money",
+        },
+        {
+          first: "money",
+          second: "love",
+          selected: "money",
+        },
+        {
+          first: "money",
+          second: "health",
+          selected: "money",
+        },
 
-          {
-            first: "family",
-            second: "love",
-            selected: "family",
-          },
-          {
-            first: "family",
-            second: "health",
-            selected: "family",
-          },
+        {
+          first: "family",
+          second: "love",
+          selected: "family",
+        },
+        {
+          first: "family",
+          second: "health",
+          selected: "family",
+        },
 
-
-          {
-            first: "love",
-            second: "sport",
-            selected: "love",
-          },
-          {
-            first: "love",
-            second: "fun",
-            selected: "",
-          },
-        ])
+        {
+          first: "love",
+          second: "sport",
+          selected: "love",
+        },
+        {
+          first: "love",
+          second: "fun",
+          selected: "",
+        },
+      ])
     ).toEqual(["money", "family", "love"]);
 
     expect(
-        getResults([
-          {
-            first: "money",
-            second: "family",
-            selected: "money",
-          },
-          {
-            first: "money",
-            second: "love",
-            selected: "money",
-          },
-          {
-            first: "money",
-            second: "health",
-            selected: "money",
-          },
+      getResults([
+        {
+          first: "money",
+          second: "family",
+          selected: "money",
+        },
+        {
+          first: "money",
+          second: "love",
+          selected: "money",
+        },
+        {
+          first: "money",
+          second: "health",
+          selected: "money",
+        },
 
-          {
-            first: "family",
-            second: "love",
-            selected: "family",
-          },
-          {
-            first: "family",
-            second: "health",
-            selected: "family",
-          },
+        {
+          first: "family",
+          second: "love",
+          selected: "family",
+        },
+        {
+          first: "family",
+          second: "health",
+          selected: "family",
+        },
 
-          {
-            first: "love",
-            second: "food",
-            selected: "love",
-          },
-          {
-            first: "love",
-            second: "sport",
-            selected: "love",
-          },
+        {
+          first: "love",
+          second: "food",
+          selected: "love",
+        },
+        {
+          first: "love",
+          second: "sport",
+          selected: "love",
+        },
 
-          {
-            first: "family",
-            second: "sport",
-            selected: "sport",
-          },
+        {
+          first: "family",
+          second: "sport",
+          selected: "sport",
+        },
 
-          {
-            first: "love",
-            second: "fun",
-            selected: "",
-          },
-        ])
+        {
+          first: "love",
+          second: "fun",
+          selected: "",
+        },
+      ])
     ).toEqual(["money", "family", "love", "sport"]);
-
-
   });
 });

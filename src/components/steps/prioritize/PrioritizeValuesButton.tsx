@@ -1,6 +1,9 @@
 import * as React from "react";
-import {prioritizeOption} from "../Steps";
-import {hoverStyleBlue, hoverStyleOrange} from "../preselect/PreselectValueButton";
+import { prioritizeOption } from "../Steps";
+import {
+  actionStylesBlue,
+  actionStylesOrange,
+} from "../preselect/PreselectValueButton";
 
 export type ValueButtonProps = {
   option: prioritizeOption;
@@ -24,8 +27,8 @@ export const PrioritizeValueButton = ({
           }
           className={`flex-1 rounded-l-md py-1 px-2 border-r-0 ${
             option.first === option.selected
-              ? `text-neon-orange border-neon-orange border-1 ${hoverStyleOrange}`
-              : `text-neon-blue border-neon-blue border-1-l preselect-shadow-l ${hoverStyleBlue}`
+              ? `text-neon-orange border-neon-orange border-1 ${actionStylesOrange}`
+              : `text-neon-blue border-neon-blue border-1-l preselect-shadow-l ${actionStylesBlue}`
           }`}
         >
           {option.first}
@@ -40,8 +43,8 @@ export const PrioritizeValueButton = ({
           }
           className={`flex-1 rounded-r-md py-1 px-2  ${
             option.second === option.selected
-              ? `text-neon-orange border-neon-orange border-1 ${hoverStyleOrange}`
-              : `text-neon-blue border-neon-blue ${hoverStyleBlue}`
+              ? `text-neon-orange border-neon-orange border-1 ${actionStylesOrange}`
+              : `text-neon-blue border-neon-blue ${actionStylesBlue}`
           } ${
             option.first === option.selected
               ? "border-1-r preselect-shadow-r"
@@ -54,4 +57,3 @@ export const PrioritizeValueButton = ({
     </div>
   );
 };
-

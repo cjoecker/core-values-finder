@@ -5,9 +5,11 @@ import { Prioritize } from "./prioritize/Prioritize";
 import { Preselect } from "./preselect/Preselect";
 import { AnimatePresence } from "framer-motion";
 import { StepAnimation } from "./shared/StepAnimation";
-import {coreValuesList} from "../../constants/coreValues";
+import { coreValuesList } from "../../constants/coreValues";
+import { Stepper } from "./stepper/Stepper";
 
 export const Steps = () => {
+  const [isComponentLoaded, setIsComponentLoaded] = useState(false);
   const [coreValues, setCoreValues] = useState<coreValue[]>([]);
   const [prioritizeOptions, setPrioritizeOptions] = useState<
     prioritizeOption[]
@@ -16,12 +18,13 @@ export const Steps = () => {
 
   useEffect(() => {
     setCoreValues(
-        shuffle(coreValuesList).map((coreValue) => ({
+      shuffle(coreValuesList).map((coreValue) => ({
         name: coreValue,
         isPreselected: false,
         isSelected: false,
       }))
     );
+    setIsComponentLoaded(true);
   }, []);
 
   useEffect(() => {
@@ -53,10 +56,14 @@ export const Steps = () => {
     );
   };
   return (
-    <div className={"flex justify-center m-auto"}>
+    <div className={"flex flex-col justify-center m-auto"}>
+      <Stepper activeStep={1} />
       <AnimatePresence exitBeforeEnter>
         {activeStep === 1 && (
-          <StepAnimation animationKey={"step-1"}>
+          <StepAnimation
+            animationKey={"step-1"}
+            isComponentLoaded={isComponentLoaded}
+          >
             <Preselect
               key={"step1"}
               coreValues={coreValues}
@@ -105,13 +112,17 @@ export interface prioritizeOption {
   selected: string | undefined;
 }
 
-function getPrioritizeOptions(
-  coreValues: coreValue[]
-): prioritizeOption[] {
-  const preselectedValues = coreValues.filter(coreValue => coreValue.isPreselected)
+function getPrioritizeOptions(coreValues: coreValue[]): prioritizeOption[] {
+  const preselectedValues = coreValues.filter(
+    (coreValue) => coreValue.isPreselected
+  );
   const coreValuesOptions: prioritizeOption[] = [];
   for (let index = 0; index < preselectedValues.length; index += 1) {
-    for (let index_ = index + 1; index_ < preselectedValues.length; index_ += 1) {
+    for (
+      let index_ = index + 1;
+      index_ < preselectedValues.length;
+      index_ += 1
+    ) {
       coreValuesOptions.push({
         first: preselectedValues[index].name,
         second: preselectedValues[index_].name,
@@ -123,12 +134,15 @@ function getPrioritizeOptions(
 }
 
 function shuffle(array: string[]) {
-  let currentIndex = array.length,  randomIndex;
+  let currentIndex = array.length,
+    randomIndex;
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
     [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
+      array[randomIndex],
+      array[currentIndex],
+    ];
   }
   return array;
 }

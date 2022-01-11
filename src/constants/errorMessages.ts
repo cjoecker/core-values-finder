@@ -1,1 +1,2 @@
-export const errorMessageNotEnoughSelected = "Please select at least three options";
+export const errorMessageNotEnoughSelected =
+  "Please select at least three options";

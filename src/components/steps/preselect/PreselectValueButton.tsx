@@ -16,8 +16,8 @@ export const PreselectValueButton = ({
       onClick={onClick}
       className={`flex-none rounded-md p-1 m-2 border-solid border-1 transition-colors ${
         isSelected
-          ? `text-neon-orange border-neon-orange ${hoverStyleOrange}`
-          : `text-neon-blue border-neon-blue hover:bg-cyan-400/10 active:bg-cyan-400/50 ${hoverStyleBlue}`
+          ? `text-neon-orange border-neon-orange ${actionStylesOrange}`
+          : `text-neon-blue border-neon-blue hover:bg-cyan-400/10 active:bg-cyan-400/50 ${actionStylesBlue}`
       }`}
     >
       {label}
@@ -25,5 +25,6 @@ export const PreselectValueButton = ({
   );
 };
 
-export const hoverStyleOrange = 'hover:bg-orange-400/10 active:bg-orange-400/50'
-export const hoverStyleBlue = 'hover:bg-cyan-400/10 active:bg-cyan-400/50'
+export const actionStylesOrange =
+  "hover:bg-orange-400/10 active:bg-orange-400/50";
+export const actionStylesBlue = "hover:bg-cyan-400/10 active:bg-cyan-400/50";

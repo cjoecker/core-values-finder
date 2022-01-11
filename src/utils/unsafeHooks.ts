@@ -5,9 +5,4 @@
  * Please use with care, as this can easily lead to bugs
  */
 
-
-
-
-
-
-export {useEffect as useEffectUnsafe, useMemo as useMemoUnsafe} from 'react';
+export { useEffect as useEffectUnsafe, useMemo as useMemoUnsafe } from "react";

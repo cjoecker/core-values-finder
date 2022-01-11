@@ -5,8 +5,8 @@ import { coreValue } from "../Steps";
 import { StepButton } from "../shared/StepButton";
 import { useState } from "react";
 import { ErrorMessage } from "../shared/ErrorMessage";
-import {errorMessageNotEnoughSelected} from "../../../constants/errorMessages";
-import {useEffectUnsafe} from "../../../utils/unsafeHooks";
+import { errorMessageNotEnoughSelected } from "../../../constants/errorMessages";
+import { useEffectUnsafe } from "../../../utils/unsafeHooks";
 
 export type PreselectValuesProps = {
   coreValues: coreValue[] | undefined;
@@ -40,7 +40,7 @@ export const Preselect = ({
   };
   return (
     <div className={"my-12"}>
-      <h1 className="text-neon-white text-center mx-auto text-3xl">
+      <h1 className="text-lg-neon-white text-center mx-auto text-3xl">
         Select the values with which you identify with
       </h1>
       <div className="mx-auto my-12 max-w-7xl flex flex-row flex-wrap justify-center">
@@ -53,11 +53,12 @@ export const Preselect = ({
           />
         ))}
       </div>
-      {isErrorVisible && <ErrorMessage errorMessage={errorMessageNotEnoughSelected} />}
+      {isErrorVisible && (
+        <ErrorMessage errorMessage={errorMessageNotEnoughSelected} />
+      )}
       <div className="mt-4 flex justify-center items-center w-screen">
         <StepButton label={"next step"} onClick={onChangeStep} />
       </div>
     </div>
   );
 };
-

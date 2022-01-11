@@ -7,6 +7,8 @@ export const Footer = () => {
     <div className={"mt-auto mb-3 text-center"}>
       Made with{" "}
       <motion.img
+        width={"40px"}
+        height={"40px"}
         className={"inline shadow-neon-orange -m-2"}
         src={heart}
         aria-label={"love"}
