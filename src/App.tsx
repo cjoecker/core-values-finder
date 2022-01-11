@@ -1,8 +1,13 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Steps } from "./components/steps/Steps";
 import { Footer } from "./components/Footer";
+import ReactGA from "react-ga";
 
 function App() {
+  useEffect(() => {
+    ReactGA.initialize('299030267');
+  }, []);
+
   return (
     <div
       className={"flex-1 w-full overflow-x-hidden flex flex-col min-h-screen"}
