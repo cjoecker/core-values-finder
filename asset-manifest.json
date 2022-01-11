@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/core-values-finder/static/css/main.c62d5b40.css",
-    "main.js": "/core-values-finder/static/js/main.6c3ddf32.js",
+    "main.js": "/core-values-finder/static/js/main.0291f3bd.js",
     "static/js/787.aceb0a68.chunk.js": "/core-values-finder/static/js/787.aceb0a68.chunk.js",
     "static/media/montserrat-v18-latin-300.svg": "/core-values-finder/static/media/montserrat-v18-latin-300.0c3783781c48cfcea845.svg",
     "static/media/montserrat-v18-latin-200.svg": "/core-values-finder/static/media/montserrat-v18-latin-200.3d508a80c30ad1cffadd.svg",
@@ -36,11 +36,11 @@
     "index.html": "/core-values-finder/index.html",
     "static/media/heart.svg": "/core-values-finder/static/media/heart.82d0db6b2c510e44912cdcdcd9893935.svg",
     "main.c62d5b40.css.map": "/core-values-finder/static/css/main.c62d5b40.css.map",
-    "main.6c3ddf32.js.map": "/core-values-finder/static/js/main.6c3ddf32.js.map",
+    "main.0291f3bd.js.map": "/core-values-finder/static/js/main.0291f3bd.js.map",
     "787.aceb0a68.chunk.js.map": "/core-values-finder/static/js/787.aceb0a68.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c62d5b40.css",
-    "static/js/main.6c3ddf32.js"
+    "static/js/main.0291f3bd.js"
   ]
 }
