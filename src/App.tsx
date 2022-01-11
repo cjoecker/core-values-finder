@@ -5,7 +5,7 @@ import ReactGA from "react-ga";
 
 function App() {
   useEffect(() => {
-    ReactGA.initialize('299030267');
+    ReactGA.initialize('UA-216869549-1');
   }, []);
 
   return (
