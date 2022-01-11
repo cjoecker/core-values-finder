@@ -43,7 +43,7 @@ export const Preselect = ({
       <h1 className="text-lg-neon-white text-center mx-auto text-3xl">
         Select the values with which you identify with
       </h1>
-      <div className="mx-auto my-12 max-w-7xl flex flex-row flex-wrap justify-center">
+      <div className="mx-auto my-6 max-w-7xl flex flex-row flex-wrap justify-center">
         {coreValues?.map((coreValue) => (
           <PreselectValueButton
             label={coreValue.name}

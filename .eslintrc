@@ -21,6 +21,7 @@
     "unicorn/prevent-abbreviations": "off",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "off",
+    "unicorn/no-abusive-eslint-disable": "off",
     "unused-imports/no-unused-imports-ts": "warn",
     "unused-imports/no-unused-vars-ts": [
       "warn",
