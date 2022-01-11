@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/core-values-finder/static/css/main.c8502f5c.css",
-    "main.js": "/core-values-finder/static/js/main.c37fcdc1.js",
+    "main.css": "/core-values-finder/static/css/main.c62d5b40.css",
+    "main.js": "/core-values-finder/static/js/main.c18247a1.js",
     "static/js/787.aceb0a68.chunk.js": "/core-values-finder/static/js/787.aceb0a68.chunk.js",
     "static/media/montserrat-v18-latin-300.svg": "/core-values-finder/static/media/montserrat-v18-latin-300.0c3783781c48cfcea845.svg",
     "static/media/montserrat-v18-latin-200.svg": "/core-values-finder/static/media/montserrat-v18-latin-200.3d508a80c30ad1cffadd.svg",
@@ -35,12 +35,12 @@
     "static/media/montserrat-v18-latin-100.woff2": "/core-values-finder/static/media/montserrat-v18-latin-100.0eb7192dfac4c4f54c88.woff2",
     "index.html": "/core-values-finder/index.html",
     "static/media/heart.svg": "/core-values-finder/static/media/heart.82d0db6b2c510e44912cdcdcd9893935.svg",
-    "main.c8502f5c.css.map": "/core-values-finder/static/css/main.c8502f5c.css.map",
-    "main.c37fcdc1.js.map": "/core-values-finder/static/js/main.c37fcdc1.js.map",
+    "main.c62d5b40.css.map": "/core-values-finder/static/css/main.c62d5b40.css.map",
+    "main.c18247a1.js.map": "/core-values-finder/static/js/main.c18247a1.js.map",
     "787.aceb0a68.chunk.js.map": "/core-values-finder/static/js/787.aceb0a68.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c8502f5c.css",
-    "static/js/main.c37fcdc1.js"
+    "static/css/main.c62d5b40.css",
+    "static/js/main.c18247a1.js"
   ]
 }
