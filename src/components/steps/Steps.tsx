@@ -56,49 +56,51 @@ export const Steps = () => {
     );
   };
   return (
-    <div className={"flex flex-col justify-center m-auto"}>
+    <>
       <Stepper activeStep={activeStep} />
-      <AnimatePresence exitBeforeEnter>
-        {activeStep === 1 && (
-          <StepAnimation
-            animationKey={"step-1"}
-            isComponentLoaded={isComponentLoaded}
-          >
-            <Preselect
-              key={"step1"}
-              coreValues={coreValues}
-              onPreselectCoreValue={onPreselectCoreValue}
-              changeStep={(newStep) => {
-                onChangeStep(newStep);
-              }}
-            />
-          </StepAnimation>
-        )}
-        {activeStep === 2 && (
-          <StepAnimation animationKey={"step-2"}>
-            <Prioritize
-              key={"step2"}
-              prioritizeOptions={prioritizeOptions}
-              onSelectOption={onPrioritizeCoreValue}
-              changeStep={(newStep) => {
-                onChangeStep(newStep);
-              }}
-            />
-          </StepAnimation>
-        )}
-        {activeStep === 3 && (
-          <StepAnimation animationKey={"step-3"}>
-            <Results
-              key={"step3"}
-              prioritizeOptions={prioritizeOptions}
-              changeStep={(newStep) => {
-                onChangeStep(newStep);
-              }}
-            />
-          </StepAnimation>
-        )}
-      </AnimatePresence>
-    </div>
+      <div className={"flex flex-col justify-center m-auto"}>
+        <AnimatePresence exitBeforeEnter>
+          {activeStep === 1 && (
+            <StepAnimation
+              animationKey={"step-1"}
+              isComponentLoaded={isComponentLoaded}
+            >
+              <Preselect
+                key={"step1"}
+                coreValues={coreValues}
+                onPreselectCoreValue={onPreselectCoreValue}
+                changeStep={(newStep) => {
+                  onChangeStep(newStep);
+                }}
+              />
+            </StepAnimation>
+          )}
+          {activeStep === 2 && (
+            <StepAnimation animationKey={"step-2"}>
+              <Prioritize
+                key={"step2"}
+                prioritizeOptions={prioritizeOptions}
+                onSelectOption={onPrioritizeCoreValue}
+                changeStep={(newStep) => {
+                  onChangeStep(newStep);
+                }}
+              />
+            </StepAnimation>
+          )}
+          {activeStep === 3 && (
+            <StepAnimation animationKey={"step-3"}>
+              <Results
+                key={"step3"}
+                prioritizeOptions={prioritizeOptions}
+                changeStep={(newStep) => {
+                  onChangeStep(newStep);
+                }}
+              />
+            </StepAnimation>
+          )}
+        </AnimatePresence>
+      </div>
+    </>
   );
 };
 
@@ -133,7 +135,7 @@ function getPrioritizeOptions(coreValues: coreValue[]): prioritizeOption[] {
   return coreValuesOptions;
 }
 
-function shuffle<T>(array: T[]):T[] {
+function shuffle<T>(array: T[]): T[] {
   let currentIndex = array.length,
     randomIndex;
   while (currentIndex !== 0) {
