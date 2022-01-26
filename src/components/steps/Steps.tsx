@@ -28,7 +28,7 @@ export const Steps = () => {
   }, []);
 
   useEffect(() => {
-    setPrioritizeOptions(getPrioritizeOptions(coreValues));
+    setPrioritizeOptions(shuffle(getPrioritizeOptions(coreValues)));
   }, [coreValues]);
 
   const onChangeStep = (targetStep: number) => {
@@ -57,7 +57,7 @@ export const Steps = () => {
   };
   return (
     <div className={"flex flex-col justify-center m-auto"}>
-      <Stepper activeStep={1} />
+      <Stepper activeStep={activeStep} />
       <AnimatePresence exitBeforeEnter>
         {activeStep === 1 && (
           <StepAnimation
@@ -133,7 +133,7 @@ function getPrioritizeOptions(coreValues: coreValue[]): prioritizeOption[] {
   return coreValuesOptions;
 }
 
-function shuffle(array: string[]) {
+function shuffle<T>(array: T[]):T[] {
   let currentIndex = array.length,
     randomIndex;
   while (currentIndex !== 0) {
